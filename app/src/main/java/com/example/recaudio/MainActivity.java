@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -38,16 +39,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("WrongConstant")
     public void Recording(View Record){
         if(out_file == null){
-            out_file = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Grabacion.gpp";
+            out_file = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Fileout.mp3";
             RecFile = new MediaRecorder();
             //Seleccion del MIC_Aud
             RecFile.setAudioSource(MediaRecorder.AudioSource.MIC);
             //Formato de salida del audio
             RecFile.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             //Codificsción del audio
-            RecFile.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+            RecFile.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
             //nombramos el archivo grabado
             RecFile.setOutputFile(out_file);
 

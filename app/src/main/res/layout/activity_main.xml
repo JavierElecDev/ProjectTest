@@ -8,37 +8,39 @@
     android:background="@drawable/wall"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/bt_play"
+    <ImageView
+        android:id="@+id/bt_record"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="208dp"
-        android:layout_marginEnd="56dp"
-        android:background="@drawable/_play"
-        android:onClick="Play"
+        android:layout_marginTop="184dp"
+        android:background="@drawable/record"
+        android:clickable="true"
+        android:onClick="Recording"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/record" />
 
-    <Button
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="120dp"
+        android:layout_height="126dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="444dp"
+        android:clickable="true"
+        android:onClick="Play"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/_play" />
+
+    <ImageView
         android:id="@+id/bt_export"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginTop="428dp"
-        android:background="@drawable/export"
-        android:onClick="Export"
+        android:layout_marginTop="444dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/bt_rec"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="208dp"
-        android:background="@drawable/record"
-        android:onClick="Recording"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/export" />
 </androidx.constraintlayout.widget.ConstraintLayout>

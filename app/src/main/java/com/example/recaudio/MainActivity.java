@@ -7,12 +7,14 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
+import android.media.Image;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity {
 
     private String out_file = null;
-    private Button bt_rec;
+    private ImageView bt_rec, bt_export;
     private MediaRecorder RecFile;
 
     @Override
@@ -28,7 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bt_rec = (Button) findViewById(R.id.bt_rec);
+        bt_rec = (ImageView) findViewById(R.id.bt_record);
+        bt_export = (ImageView) findViewById(R.id.bt_export);
 
         if (ContextCompat.checkSelfPermission(getApplicationContext(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED &&
@@ -39,17 +42,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("WrongConstant")
+
     public void Recording(View Record){
         if(out_file == null){
-            out_file = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Fileout.mp3";
+            out_file = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Med_Rec.mp3";
             RecFile = new MediaRecorder();
             //Seleccion del MIC_Aud
             RecFile.setAudioSource(MediaRecorder.AudioSource.MIC);
             //Formato de salida del audio
             RecFile.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
             //Codificsción del audio
-            RecFile.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+            RecFile.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             //nombramos el archivo grabado
             RecFile.setOutputFile(out_file);
 
@@ -57,18 +60,18 @@ public class MainActivity extends AppCompatActivity {
                 RecFile.prepare();
                 RecFile.start();
             }catch (IOException e){
-                // por la captura mas adelante :.D
+                // poner la captura mas adelante :.D
             }
 
-            bt_rec.setBackgroundResource(R.drawable.record);
+            bt_rec.setImageResource(R.drawable.record);
             Toast.makeText(getApplicationContext(), "Recording...", Toast.LENGTH_SHORT).show();
         }else if(RecFile != null){
             //Detener
-            RecFile.start();
+            RecFile.stop();
             //grabación finalizada
             RecFile.release();
             RecFile = null;
-            bt_rec.setBackgroundResource(R.drawable.stop);
+            bt_rec.setImageResource(R.drawable.record);
             Toast.makeText(this,"Record Ready!!", Toast.LENGTH_SHORT).show();
         }
     }
